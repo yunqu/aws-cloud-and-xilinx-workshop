@@ -11,61 +11,7 @@ If as part of this workshop you received credits to offset any potential cost oc
 
 Most of the physical hardware will be pre-configured for you prior to the start of the workshop.  This section outlines the steps to configuring the physical aspects such that you can quickly check your hardware.
 
-The Ultra96 and MicroZed each have one serial connection to your workstation.  We will primarily be using the Ultra96 serial port in this workshop but provide reference on installation for both platforms in this section in case debug is required.
-
-### Avnet MicroZed IIoT Kit
-1. Attach the ST Micro X-NUCLEO Shield to the Arduno Carrier Card.  This connects the sensor set to the FPGA programmable logic.
-2. Plug in the Maxim 31855 PMOD thermocouple to Arduinio Carrier Card J3 connector labeld "PL_PMOD".  Match pin numbers (pin 1 to pin 1) between the boards - plug into the top row of J3.  This connects the sensor to the FPGA programmable logic.
-3. Plug the MicroZed System on Module (SoM) onto the Arduno Carrier Card.  When completed with this step the system should look like the picture below.
-
-   ![alt text](images/MicroZed_IIoT_HW_Overview.png "IIoT Kit Overview")
-4. Check that the boot mode jumpers (JP1-JP3) are configured for SD Card boot (JP1 - Pins 1 & 2, JP2 - Pins 2 & 3, JP3 - Pins 2 & 3). See picture below for the proper jumper settings.
-
-   ![alt text](images/MicroZed_SD_CardJumperSettings.png?raw=true "SD Card Boot Jumper Settings")
-5. Plug an Ethernet cable from the RJ45 connector of the MicroZed SoM to the Ethernet switch on your table.
-
-Leave the MicroZed assembled as is and we will power it up at the end of Lab 2 after writing the microSD card contents via the Ultra96 platform.  The MicroZed board is powered by the J2 and J7 microUSB connections on the boards.
-
-MicroZed uses a Silicon Labs CP2104 USB-to-UART Bridge. If the driver is not automatically detected by your OS, it can be downloaded from: https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers.
-
-#### Serial Port Installation and Connection: Windows
-
-Ensure you have a serial port terminal emulator such as [Putty](//www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or [Tera Term](https://osdn.net/projects/ttssh2/releases/) installed.
-
-1. Open Device Manager.  View the current COM ports available.
-2. Plug in the MicroZed device.
-3. Identify the change in COM ports.
-4. Use Putty, Tera Term, or your other favorite serial program to connect to the COM port at 115200-N-1.
-
-#### Serial Port Installation and Connection: MacOS/Linux
-
-Virtually all Linux distributions have ```screen``` installed and MacOS has ```screen``` installed by default.
-
-1. Open a [Terminal](https://en.wikipedia.org/wiki/Terminal_(macOS)) window on MacOS or an XTerm (or your favorite terminal program) on Linux.
-2. Issue the following command to view current serial devices.
-
-   ```bash
-   ls /dev/cu.usb*
-   ```
-3. Plug in the MicroZed.
-4. Issue the following command again to identify the device.
-
-   ```bash
-   ls /dev/cu.usb*
-   ```
-5. Identify the change of items in the list, and issue the following command:
-
-   ```bash
-   screen /dev/<device> 115200 -L
-   ```
-
-   For example, if the difference was ```cu.usbmodem0003```, the command would be:
-
-   ```bash
-   screen /dev/cu.usbmodem0003 115200 -L
-   ```
-
-Alternatively, if you use MacOS, the application [Serial](https://www.decisivetactics.com/products/serial/) is a great choice.  It is not free, but has many usability features that are common to applications running on MacOS.
+The Ultra96 has one serial connection to your workstation.  We will primarily be using the Ultra96 serial port in this workshop but provide reference on installation for both platforms in this section in case debug is required.
 
 ### Avnet Ultra96
 A pre-built Ultra96 image has been created to support this workshop.  As a user you need to first download this image and burn it to the 16GB microSD card included in the Ultra96 kit and boot the board.  The steps below outline this process:
@@ -79,7 +25,6 @@ A pre-built Ultra96 image has been created to support this workshop.  As a user 
     1. A debug UART interface
     2. A portable drive named 'PYNQ-USB' to navigate the Ultra96 file system
     3. An RNDIS (Ethernet over USB) interface
-7. Plug in the USB to microSD card reader with an 8GB microSD card installed. We will use this in Lab 2 to have Ultra96 write the MicroZed boot image.
 
 After the set-up the Ultra96 should look like the picture below.
 
@@ -97,7 +42,7 @@ Open the terminal emulator for Ultra96 by following instructions for either the 
 #### Serial Port Installation and Connection: Windows
 
 1. Open Device Manager.  View the current COM ports available.
-2. Plug in the MicroZed device.
+2. Plug in the Ultra96 device.
 3. Identify the change in COM ports.
 4. Use Putty, Tera Term, or your other favorite serial program to connect to the COM port at 115200-8-N-1.
 
@@ -109,7 +54,7 @@ Open the terminal emulator for Ultra96 by following instructions for either the 
    ```bash
    ls /dev/cu.usb*
    ```
-3. Plug in the MicroZed.
+3. Plug in the Ultra96.
 4. Issue the following command again to identify the device.
 
    ```bash
@@ -165,7 +110,7 @@ In this section, you will clone the workshop Git repository.  The Git repository
 3. Clone the repository by running the following command.
 
    ```bash
-   git clone https://github.com/rpcme/aws-cloud-and-xilinx-workshop
+   git clone https://github.com/yunqu/aws-cloud-and-xilinx-workshop.git
    cd aws-cloud-and-xilinx-workshop
    ```
    

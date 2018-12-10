@@ -1,6 +1,6 @@
 # Workshop:  Integrate the AWS Cloud with Responsive Xilinx Machine Learning at the Edge
 
-This repository outlines a workshop first implemented and shared at the AWS re:Invent conference in November 2018.  In working through the workshop labs you learn how you can integrate Xilinx edge machine learning with massive scale AWS Cloud analytics, machine learning model building, and dashboards. Based on a distributed industrial control scenario, you will learn how to combine AWS Cloud services with AWS Greengrass on Zynq Ultrascale+ and Amazon FreeRTOS on Xilinx Zynq-7000. After this workshop, you will have a concrete understanding of Machine Learning applicability at the edge and its relationship with the AWS Cloud.
+This repository outlines a workshop first implemented and shared at the AWS re:Invent conference in November 2018.  In working through the workshop labs you learn how you can integrate Xilinx edge machine learning with massive scale AWS Cloud analytics, machine learning model building, and dashboards. Based on a distributed industrial control scenario, you will learn how to combine AWS Cloud services with AWS Greengrass on Zynq Ultrascale+. After this workshop, you will have a concrete understanding of Machine Learning applicability at the edge and its relationship with the AWS Cloud.
  
 The repository remains available as a snapshot of the workshop implementation at re:Invent 2018 such that developers that want a hands-on experience of the AWS and Xilinx technology integration can do so by purchasing their own HW set (outlined in FAQs) and following the instructions below.
 
@@ -10,17 +10,12 @@ In this lab you will download the Xilinx tools required for customizing the runt
 
 [Go to Lab 1](./Lab1.md)
 
-# Lab 2: Establish Amazon FreeRTOS and AWS Greengrass Connectivity
+# Lab 2: Establish AWS Greengrass Connectivity
 
-In this lab we will establish basic connectivity to the AWS cloud for both the MicroZed and Ultra96 devices. In order to do this we need to establish unique device identities that link the device to your AWS IoT account. This is done through a unique certificate and encyrption key. You will need to create these credentials in your AWS account and then manually copy them to each device.
+In this lab we will establish basic connectivity to the AWS cloud for Ultra96 device. In order to do this we need to establish unique device identities that link the device to your AWS IoT account. This is done through a unique certificate and encyrption key. You will need to create these credentials in your AWS account and then manually copy them to each device.
 
 [Go to Lab 2](./Lab2.md)
 
-# Lab 3: Create Distributed Control App
-
-In this lab we will demonstrate the intelligent I/O module of the MicroZed kit collecting sensor data, sending it to the cloud, while also alerting the control system and remote asset owner to a change in the state of the system using AWS Device Shadow.
-
-[Go to Lab 3](./Lab3.md)
 
 # Lab 4: Deriving Machine Learning Inference Value
 
