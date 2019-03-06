@@ -113,7 +113,7 @@ fi
 
 # Associate service role to account
 echo Associating service role to the Account.
-aws greengrass-pp associate-service-role-to-account \
+aws greengrass associate-service-role-to-account \
     --role-arn ${service_role_arn}
 
 # Create the role for the Greengrass group.  This enables TES for the S3 bucket
@@ -182,7 +182,7 @@ cat <<EOF > ${d_agg_config}/core-definition-init.json
 EOF
 
 echo Creating the core definition.
-core_v_arn=$(aws greengrass-pp create-core-definition --output text             \
+core_v_arn=$(aws greengrass create-core-definition --output text             \
                  --name ${thing_agg}-core                                    \
                  --initial-version file://${d_agg_config}/core-definition-init.json \
                  --query LatestVersionArn)
@@ -210,7 +210,7 @@ cat <<EOF > ${d_agg_config}/device-definition-init.json
 EOF
 
 echo Creating the device definition.
-device_v_arn=$(aws greengrass-pp create-device-definition --output text                          \
+device_v_arn=$(aws greengrass create-device-definition --output text                          \
                  --name ${thing_agg}-device                                    \
                  --initial-version file://${d_agg_config}/device-definition-init.json \
                  --query LatestVersionArn)
@@ -245,7 +245,7 @@ cat <<EOF > ${d_agg_config}/logger-definition-init.json
 EOF
 
 echo Creating the logger definition.
-logger_v_arn=$(aws greengrass-pp create-logger-definition --output text \
+logger_v_arn=$(aws greengrass create-logger-definition --output text \
                    --name ${thing_agg}-logger \
                    --initial-version file://${d_agg_config}/logger-definition-init.json \
                    --query LatestVersionArn)
@@ -269,7 +269,7 @@ cat <<EOF > ${d_agg_config}/resource-definition-init.json
 EOF
 
 echo Creating the resource definition.
-resource_v_arn=$(aws greengrass-pp create-resource-definition --output text \
+resource_v_arn=$(aws greengrass create-resource-definition --output text \
                      --name ${thing_agg}-resource \
                      --initial-version file://${d_agg_config}/resource-definition-init.json \
                      --query LatestVersionArn)
@@ -484,7 +484,7 @@ cat <<EOF > ${d_agg_config}/function-definition-init.json
 EOF
 
 echo Creating the function definition.
-function_v_arn=$(aws greengrass-pp create-function-definition --output text \
+function_v_arn=$(aws greengrass create-function-definition --output text \
                      --name ${thing_agg}-function \
                      --initial-version file://${d_agg_config}/function-definition-init.json \
                      --query LatestVersionArn)
@@ -624,7 +624,7 @@ cat <<EOF > ${d_agg_config}/subscription-definition-init.json
 EOF
 
 echo Creating the subscription definition.
-subscription_v_arn=$(aws greengrass-pp create-subscription-definition --output text \
+subscription_v_arn=$(aws greengrass create-subscription-definition --output text \
                          --name ${thing_agg}-subscription \
                          --initial-version file://${d_agg_config}/subscription-definition-init.json \
                          --query LatestVersionArn)
@@ -649,7 +649,7 @@ cat <<EOF > ${d_agg_config}/group-init.json
 EOF
 
 echo Creating the Greengrass group.
-group_v_arn=$(aws greengrass-pp create-group --output text \
+group_v_arn=$(aws greengrass create-group --output text \
                          --name ${thing_agg}-group \
                          --initial-version file://${d_agg_config}/group-init.json \
                          --query LatestVersionArn)
@@ -664,7 +664,7 @@ echo Associating the role to the Greengrass group.
 group_info_raw=$(aws greengrass list-groups --output text \
                      --query "Groups[?Name == '${thing_agg}-group'].[Id,LatestVersion]")
 group_info_id=$(echo $group_info_raw | tr -s ' ' ' ' | cut -f1 -d ' ')
-aws greengrass-pp associate-role-to-group --group-id ${group_info_id} --role-arn ${agg_role}
+aws greengrass associate-role-to-group --group-id ${group_info_id} --role-arn ${agg_role}
 
 if test $? != 0; then
   echo Greengrass role association failed. Clean and try again.
